@@ -3,6 +3,7 @@ import Header from './Components/Header';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Contactform from './Components/Contactform';
+import Login from './Components/Login';
 
 function App() {
   return (
@@ -11,9 +12,9 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path='/' element={<Contactform />}>
-            {/* <Route path='contact' element={</>} /> */}
-          </Route>
+          <Route path='/' element={<Contactform />}/>
+            <Route path='/login' element={<Login/>} />
+          
         </Routes>
       </BrowserRouter>
 
