@@ -38,7 +38,7 @@ export default function Contactform() {
             <Form.Label style={{ fontWeight: 'bold', fontSize:'20px', fontFamily:'Nunito Sans' }}>Password</Form.Label>
             <Form.Control type="password" placeholder="Password" onChange={(e)=>setPassword(e.target.value)}/>
           </Form.Group>
-          <Button variant="primary" type="submit">
+          <Button variant="primary" type="submit" className='mx-auto d-flex' style={{fontWeight:'bold'}}>
             Submit
           </Button>
         </Form>
