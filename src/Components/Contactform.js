@@ -25,13 +25,13 @@ export default function Contactform() {
    try{
     const result  = await auth.createUserWithEmailAndPassword(email, password)
     console.log(result);
-    setStatus({status:true, type:'success', msg:'Ypus! you have successfully created your account please signed inn'})
+    setStatus({status:true, type:'success', msg:'Yups!! You have successfully created your account'})
     setTimeout(()=>{
       navigate('/login')
     },3000)
    }catch(err){
     console.log(err);
-    setStatus({status:true, type:'error', msg:'OOPS!! Something went wrong'})
+    setStatus({status:true, type:'error', msg:err.message})
    }
 
   }

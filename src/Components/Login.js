@@ -25,13 +25,13 @@ export default function Login() {
         try {
             const result = await auth.signInWithEmailAndPassword(email, password);
             console.log(result);
-            setStatus({ status: true, type: 'success', msg: 'Yups! you have logged inn successfully' });
+            setStatus({ status: true, type: 'success', msg:`Welcome!  ${result.user.email}`});
             setTimeout(() => {
                 navigate('/todo')
             }, 3000)
         } catch (error) {
             console.log(error.FirebaseError);
-            setStatus({ status: true, type: 'error', msg: 'OOPS!!  Something went wrong...' })
+            setStatus({ status: true, type: 'error', msg: error.message})
         }
     }
 
