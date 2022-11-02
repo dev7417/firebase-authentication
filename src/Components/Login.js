@@ -6,6 +6,8 @@ import './contactForm.css'
 import { useState } from 'react';
 import Alert from '@mui/material/Alert';
 import { useNavigate } from 'react-router-dom';
+import { sendData } from '../Redux/Action/Action';
+import { useDispatch } from 'react-redux';
 
 
 export default function Login() {
@@ -18,6 +20,7 @@ export default function Login() {
         msg: ''
     })
     const navigate = useNavigate()
+    const dispatch = useDispatch();
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -25,6 +28,9 @@ export default function Login() {
         try {
             const result = await auth.signInWithEmailAndPassword(email, password);
             console.log(result);
+            console.log(result.user)
+           dispatch(sendData(result.user))
+        //    console.log()
             setStatus({ status: true, type: 'success', msg:`Welcome!  ${result.user.email}`});
             setTimeout(() => {
                 navigate('/todo')
@@ -53,6 +59,7 @@ export default function Login() {
                             <Button variant="primary" type="submit" className='mx-auto d-flex' style={{ fontWeight: 'bold' }}>
                                 Submit
                             </Button>
+                            <input type='text'/>
                         </Form>
                     </div>
                 </div>
