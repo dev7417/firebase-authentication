@@ -1,7 +1,9 @@
 import React from 'react'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-
+import { auth } from '../Firebase';
+import { Alert } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import './contactForm.css'
 import { useState } from 'react';
 
@@ -10,11 +12,27 @@ export default function Contactform() {
   const [lName, setLName] = useState();
   const [email, setEmail]  = useState();
   const [password, setPassword] = useState();
+  const [status, setStatus] = useState({
+    status: false,
+    type: '',
+    error: ''
+  })
+  const navigate = useNavigate();
 
 
-  const handleOnSubmit=(e)=>{ 
+  const handleOnSubmit= async(e)=>{ 
     e.preventDefault();
-    console.log(fName,lName,email,password)
+   try{
+    const result  = await auth.createUserWithEmailAndPassword(email, password)
+    console.log(result);
+    setStatus({status:true, type:'success', msg:'Ypus! you have successfully created your account please signed inn'})
+    setTimeout(()=>{
+      navigate('/login')
+    },3000)
+   }catch(err){
+    console.log(err);
+    setStatus({status:true, type:'error', msg:'OOPS!! Something went wrong'})
+   }
 
   }
 
@@ -46,6 +64,7 @@ export default function Contactform() {
         </div>
        
       </div>
+      <Alert severity={status.type}>{status.msg}</Alert>
     </div>
   )
 }

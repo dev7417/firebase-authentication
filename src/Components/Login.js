@@ -5,8 +5,8 @@ import { auth } from '../Firebase'
 import './contactForm.css'
 import { useState } from 'react';
 import Alert from '@mui/material/Alert';
-import Stack from '@mui/material/Stack';
-import { Box } from '@mui/material'
+import { useNavigate } from 'react-router-dom';
+
 
 export default function Login() {
     const [email, setEmail] = useState();
@@ -17,24 +17,25 @@ export default function Login() {
         type: '',
         msg: ''
     })
+    const navigate = useNavigate()
 
     const handleLogin = async (e) => {
         e.preventDefault();
         // console.log(email, password)
         try {
-            const result = await auth.createUserWithEmailAndPassword(email, password);
+            const result = await auth.signInWithEmailAndPassword(email, password);
             console.log(result);
-            setStatus({ status: true, type: 'success', msg: 'data submitted successfully' });
-
-
+            setStatus({ status: true, type: 'success', msg: 'Yups! you have logged inn successfully' });
+            setTimeout(() => {
+                navigate('/todo')
+            }, 3000)
         } catch (error) {
             console.log(error.FirebaseError);
-            setStatus({ status: true, type: 'error', msg: error.FirebaseError })
+            setStatus({ status: true, type: 'error', msg: 'OOPS!!  Something went wrong...' })
         }
     }
 
     return (
-
         <>
             <div className='container'>
                 <div className='login-form'>
@@ -54,13 +55,9 @@ export default function Login() {
                             </Button>
                         </Form>
                     </div>
-
                 </div>
             </div>
             <Alert severity={status.type}>{status.msg}</Alert>
-
-
-
         </>
     )
 }
