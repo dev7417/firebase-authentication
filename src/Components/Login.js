@@ -59,12 +59,14 @@ export default function Login() {
                             <Button variant="primary" type="submit" className='mx-auto d-flex' style={{ fontWeight: 'bold' }}>
                                 Submit
                             </Button>
-                            <input type='text'/>
+                         
                         </Form>
                     </div>
                 </div>
+            {/* <img src='https://cdn.pixabay.com/photo/2014/02/27/16/10/flowers-276014_960_720.jpg' alt='define'/> */}
             </div>
             <Alert severity={status.type}>{status.msg}</Alert>
+
         </>
     )
 }
