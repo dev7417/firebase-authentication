@@ -1,5 +1,5 @@
 const initialState = {
-    data:[]
+    data:[ ]
 }
 
 export const dataReducer = (state= initialState, action )=>{
@@ -8,6 +8,10 @@ export const dataReducer = (state= initialState, action )=>{
             return {
                 data: action.payload
             }
+            case "REMOVE_DATA":
+                return{
+                    data:[]
+                }
             default: return state;
     }
 

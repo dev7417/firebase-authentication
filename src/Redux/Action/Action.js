@@ -5,3 +5,10 @@ export const sendData = (item) =>{
         payload: item,
     }
 }
+
+export const removeUserId = (item) =>{
+    return{
+        type:"REMOVE_DATA",
+        payload: item
+    }
+}
