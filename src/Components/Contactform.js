@@ -20,7 +20,6 @@ export default function Contactform() {
     error: ''
   })
   const navigate = useNavigate();
-  const [progress, setProgress] = useState(0)
   const [image, setImage] = useState('')
 
 
@@ -73,13 +72,12 @@ export default function Contactform() {
             <Form.Control type="password" placeholder="Password" onChange={(e)=>setPassword(e.target.value)}/>
           </Form.Group>
           <input type='file' onChange={(e)=> setImage(e.target.files[0])}/>
-          <button type='submit' onClick={upload}>upload</button>
+          {/* <button type='submit' onClick={upload}>upload</button> */}
           <Button variant="primary" type="submit" className='mx-auto d-flex' style={{fontWeight:'bold'}}>
             Submit
           </Button>
         </Form>
         </div>
-        <h1>{progress}</h1>
        
       </div>
       <Alert severity={status.type}>{status.msg}</Alert>
